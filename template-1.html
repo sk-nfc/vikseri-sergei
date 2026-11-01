@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визитка</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --card-bg: #121212;
+      --cover-height: 190px;
+      
+      /* НАСТРОЙКА ФОТО В КРУГЕ */
+      --photo-y: 20%;              /* Положение по высоте (0% вверх, 50% центр) */
+      --photo-zoom: 90%;           /* Меньше 100% = отдалить лицо (лицо становится меньше) */
+
+      --logo-box-bg: #1e1e1e;
+      --logo-border: rgba(255, 255, 255, 0.12);
+      --logo-size: 75%;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card-container {
+      width: 100%;
+      max-width: 410px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+    }
+
+    .cover-image {
+      width: 100%;
+      height: var(--cover-height);
+      object-fit: cover;
+      display: block;
+    }
+
+    .identity-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 20px;
+      margin-top: -55px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-wrapper {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 3px solid #121212;
+      overflow: hidden;
+      background-color: #1a1a1a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center var(--photo-y);
+      transform: scale(var(--photo-zoom));
+      display: block;
+    }
+
+    .logo-box {
+      width: 110px;
+      height: 60px;
+      border-radius: 10px;
+      background-color: var(--logo-box-bg);
+      border: 1px solid var(--logo-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      margin-bottom: 5px;
+    }
+
+    .logo-img {
+      max-width: var(--logo-size);
+      max-height: var(--logo-size);
+      object-fit: contain;
+      display: block;
+    }
+
+    /* БЛОК ИМЕНИ: УВЕЛИЧЕННЫЙ РАЗМЕР ДОЛЖНОСТИ И ФИРМЫ */
+    .profile-info {
+      padding: 18px 20px 8px;
+    }
+
+    .person-name {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .person-role {
+      font-size: 1.05rem;          /* Увеличено */
+      font-weight: 400;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .person-company {
+      font-size: 1.05rem;          /* Увеличено */
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    /* Кнопки контактов */
+    .contacts-list {
+      padding: 12px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      padding: 13px 16px;
+      background: #1c1c1e;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.15s ease;
+    }
+
+    .contact-item:active {
+      background: #2c2c2e;
+    }
+
+    .contact-icon {
+      width: 24px;
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-right: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .save-vcard-btn {
+      margin-top: 6px;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 600;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+    }
+
+    .save-vcard-btn .contact-icon {
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <img src="cover.jpg" alt="Обложка" class="cover-image">
+
+    <div class="identity-row">
+      <div class="avatar-wrapper">
+        <img src="photo.jpg" alt="Фото" class="avatar-img">
+      </div>
+      <div class="logo-box">
+        <img src="logo.jpg" alt="Логотип" class="logo-img">
+      </div>
+    </div>
+
+    <div class="profile-info">
+      <h1 class="person-name">Сергей</h1>
+      <div class="person-role">Руководитель</div>
+      <div class="person-company">Vikseri Külmatehnika OÜ</div>
+    </div>
+
+    <div class="contacts-list">
+      <a href="tel:+37200000000" class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+        <span>+372 0000 0000</span>
+      </a>
+
+      <a href="mailto:info@vikseri.ee" class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+        <span>info@vikseri.ee</span>
+      </a>
+
+      <a href="https://vikseri.ee" target="_blank" class="contact-item">
+        <div class="contact-icon"><i class="fa-solid fa-globe"></i></div>
+        <span>vikseri.ee</span>
+      </a>
+
+      <a href="https://wa.me/37200000000" target="_blank" class="contact-item">
+        <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <span>WhatsApp</span>
+      </a>
+
+      <div class="contact-item" style="cursor: default;">
+        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <span>Tallinn, Estonia</span>
+      </div>
+
+      <button onclick="downloadVCard()" class="contact-item save-vcard-btn">
+        <div class="contact-icon"><i class="fa-solid fa-address-card"></i></div>
+        <span>Сохранить в контакты</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function downloadVCard() {
+      const vcard = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:Сергей
+ORG:Vikseri Külmatehnika OÜ
+TITLE:Руководитель
+TEL;TYPE=CELL:+37200000000
+EMAIL:info@vikseri.ee
+URL:https://vikseri.ee
+ADR;TYPE=WORK:;;Tallinn, Estonia;;;
+END:VCARD`;
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const a = document.createElement('a');
+      a.download = `Сергей.vcf`;
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+  </script>
+</body>
+</html>
